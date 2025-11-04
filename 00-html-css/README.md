@@ -17,3 +17,9 @@
   - `<img>`: define una imagen.
   - `<ul>`, `<ol>`, `<li>`: definen listas no ordenadas, ordenadas y elementos de lista respectivamente.
   - `<div>`: define una division o seccion en un documento, utilizada para agrupar elementos y aplicar estilos con CSS.
+
+## Recomendaciones
+
+- El alt en una imagen es importante para la accesibilidad y SEO.
+- El title en una imagen es opcional y proporciona informacion adicional al usuario. Se activa al pasar el cursor sobre la imagen.
+- Se puede poner hidden, este es booleano, por lo que si esta en el elemento este automaticamente se ocultara, no importa si tiene contenido o no. En una imagen para ocultarla visualmente pero mantenerla en el DOM para lectores de pantalla.
