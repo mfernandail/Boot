@@ -32,6 +32,8 @@
   - `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: hace que el sitio web sea responsivo en dispositivos moviles.
   - `<title>`: define el titulo del documento que aparece en la pestaña del navegador. Aparece en los resultados de busqueda y es importante para el SEO.
   - `<link rel="icon" href="favicon.ico" type="image/x-icon">`: define el icono que aparece en la pestaña del navegador.
+  - `<link rel="alternate" hreflang="es" href="https://www.ejemplo.com/es/">`: indica la version en español de la pagina web. En ingles seria "en".
+  - `<link rel="canonical" href="https://www.ejemplo.com/">`: define la URL canonica del contenido. Eso es, la version preferida de una pagina web cuando hay varias versiones con contenido similar. Ayuda a evitar problemas de contenido duplicado y mejora el SEO.
   - `<meta name="robots" content="index, follow">`: es una metaetiqueta para los motores de búsqueda (como Google, Bing, etc.) y le indica cómo deben comportarse con tu página web. Esta metaetiqueta le dice a Google y otros buscadores: “Puedes indexar esta página y también seguir los enlaces que hay en ella.”
 
     - name="robots" → Se dirige a los "robots" o crawlers de los buscadores (los programas que rastrean las páginas web para indexarlas).
@@ -51,3 +53,12 @@
 - `<meta name="description" content="Descripcion del sitio web">`: proporciona una descripcion del sitio web para motores de busqueda.
 - `<meta name="keywords" content="palabra1, palabra2, palabra3">`: define palabras clave relacionadas con el contenido del sitio web para motores de busqueda.
 - `<meta name="author" content="Nombre del autor">`: especifica el nombre del autor del documento.
+
+## OPEN GRAPH y TWITTER CARDS: son metaetiquetas que mejoran la apariencia de los enlaces compartidos en redes sociales.
+
+- Open Graph (OG) es un protocolo utilizado por Facebook y otras redes sociales para obtener informacion sobre el contenido de una pagina web cuando se comparte un enlace. Algunas etiquetas OG comunes son:
+  - `<meta property="og:title" content="Titulo del sitio web">`: define el titulo del contenido.
+  - `<meta property="og:description" content="Descripcion del sitio web">`: proporciona una descripcion del contenido.
+  - `<meta property="og:image" content="url-de-la-imagen.jpg">`: especifica la imagen que se mostrara al compartir el enlace.
+  - `<meta property="og:url" content="https://www.ejemplo.com">`: define la URL canonica del contenido.
+  - `<meta property="og:type" content="website">`: especifica el tipo de contenido (por ejemplo, article, video, website).
