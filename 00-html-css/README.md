@@ -62,3 +62,16 @@
   - `<meta property="og:image" content="url-de-la-imagen.jpg">`: especifica la imagen que se mostrara al compartir el enlace.
   - `<meta property="og:url" content="https://www.ejemplo.com">`: define la URL canonica del contenido.
   - `<meta property="og:type" content="website">`: especifica el tipo de contenido (por ejemplo, article, video, website).
+
+## HTML semantico
+
+- span sive para agrupar texto en linea y aplicar estilos o scripts sin afectar la estructura del documento.
+- div sirve para agrupar bloques de contenido y aplicar estilos o scripts sin afectar la estructura del documento.
+- Desde el navegador para ver los elemento semanticos se puede usar Accessibility para ver la estructura semantica del documento.
+- Se recomienda usar small para ejemplo copyright o notas al pie, ya que tiene un significado semantico claro. Informacion secundaria o menos importante en el contexto del contenido principal.
+- El aside se usa para contenido relacionado pero no esencial para el contenido principal, como barras laterales o anuncios.
+- La etiqueta main solo puede haber una por pagina y debe contener el contenido principal del documento.
+- La etiqueta figure se usa para contenido ilustrativo, como imagenes, diagramas o graficos, junto con su leyenda (caption).
+- La etiqueta <a> se usa para enlaces y debe tener un href valido para ser accesible. La diferancia entre usar un boton y un enlace es que el boton se usa para acciones dentro de la pagina, mientras que el enlace se usa para navegar a otra pagina o recurso. se usa noreferer en los enlaces para evitar que el sitio destino sepa de donde viene el trafico.
+- Se puede usa div con role="button" para crear un boton accesible, pero es mejor usar la etiqueta <button> directamente para asegurar la accesibilidad y funcionalidad adecuada. Se puede ver el listado de roles en https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles
+- Se puede usar el atributo download en elementos para forzar la descarga de un archivo en lugar de abrirlo en el navegador. Pero solo funciona para archivos del mismo dominio por razones de seguridad. Por ejemplo `<img src="image.jpg" download="mi-imagen.jpg">` entonces al hacer clic en la imagen se descargara en lugar de abrirse en el navegador.
