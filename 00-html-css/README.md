@@ -16,6 +16,10 @@ Breve resumen de etiquetas, metaetiquetas, accesibilidad y recomendaciones para 
   - [Formularios](#formularios)
   - [Imágenes](#imágenes)
   - [Recursos y etiquetas especiales](#recursos-y-etiquetas-especiales)
+  - [rel="canonical"](#relcanonical)
+    - [Cuándo usar cada uno](#cuándo-usar-cada-uno)
+    - [Buenas prácticas (rápido)](#buenas-prácticas-rápido)
+  - [Ejemplos](#ejemplos)
 
 ---
 
@@ -198,3 +202,97 @@ Ejemplo básico:
     <button id="cerrar">Cerrar</button>
   </dialog>
   ```
+
+---
+
+## rel="canonical"
+
+- rel="canonical": indica a los motores de búsqueda la URL preferida (canónica) cuando hay varias URLs con contenido muy similar o idéntico. Es una sugerencia para consolidar autoridad y evitar contenido duplicado.
+- rel="alternate" (con hreflang): indica versiones alternativas de la misma página en otros idiomas o regiones. Le dice a los buscadores qué versión mostrar según el idioma/ubicación del usuario.
+- Usar ambos juntos es normal: cada versión lingüística suele tener su propia self-canonical y además enlaces rel="alternate" hreflang apuntando entre versiones.
+
+### Cuándo usar cada uno
+
+- canonical: cuando una misma página es accesible por varias URLs (parámetros, sesiones, versiones con/ sin www, http/https). También para indicar la versión “limpia” (sin parámetros de tracking).
+- alternate + hreflang: cuando publicas la misma o equivalente página en diferentes idiomas o para diferentes zonas geográficas y quieres servir la versión correcta al usuario.
+
+### Buenas prácticas (rápido)
+
+- Usa URLs absolutas en href (incluye https://dominio).
+- Incluye exactamente una etiqueta rel="canonical" por página.
+- Cada página debe usar self-canonical (apunta a sí misma), salvo casos concretos.
+- Evita cadenas/bucles (A → B → C) en canonicals; apunta directo a la versión final.
+- Para hreflang, lista todas las alternativas incluyendo la self-version (reciprocidad recomendada).
+- No canonicalices a páginas 404 o bloqueadas por robots.txt.
+  Redirect 301 es más fuerte que la canonical; redirige cuando aplique.
+
+## Ejemplos
+
+1. Canonical simple (self-canonical):
+
+```html
+<head>
+  <link rel="canonical" href="https://www.ejemplo.com/es/producto/" />
+  <link
+    rel="alternate"
+    hreflang="es"
+    href="https://www.ejemplo.com/es/producto/"
+  />
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="https://www.ejemplo.com/en/product/"
+  />
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href="https://www.ejemplo.com/en/product/"
+  />
+</head>
+```
+
+2. Variante con parámetros (puntos a la versión limpia sin parámetros):
+
+```html
+<!-- Página con parámetros de tracking -->
+https://www.ejemplo.com/producto/?utm_source=facebook&utm_campaign=promo
+
+<!-- Canonical apunta a la versión sin parámetros -->
+<head>
+  <link rel="canonical" href="https://www.ejemplo.com/producto/" />
+</head>
+```
+
+3. Multilenguaje — canonical self + hreflang (es / en):
+
+```html
+<!-- Página en español -->
+<head>
+  <link rel="canonical" href="https://www.ejemplo.com/es/producto/" />
+  <link
+    rel="alternate"
+    hreflang="es"
+    href="https://www.ejemplo.com/es/producto/"
+  />
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="https://www.ejemplo.com/en/product/"
+  />
+</head>
+
+<!-- Página en inglés -->
+<head>
+  <link rel="canonical" href="https://www.ejemplo.com/en/product/" />
+  <link
+    rel="alternate"
+    hreflang="es"
+    href="https://www.ejemplo.com/es/producto/"
+  />
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="https://www.ejemplo.com/en/product/"
+  />
+</head>
+```
