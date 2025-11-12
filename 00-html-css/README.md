@@ -306,4 +306,4 @@ En html se utilizan las etiquetas `<a>` para crear enlaces. Los atributos más c
 
 - `href`: especifica la URL del destino del enlace.
 - `target`: define dónde se abrirá el enlace (por ejemplo, `_blank` para abrir en una nueva pestaña).
-- `rel`: define la relación entre el documento actual y el destino del enlace (por ejemplo, `noopener` para mejorar la seguridad al abrir en una nueva pestaña).
+- `rel`: define la relación entre el documento actual y el destino del enlace (por ejemplo, `noopener` para mejorar la seguridad al abrir en una nueva pestaña). Y para para no enviar la información de referencia al sitio destino se usa `noreferrer`. Es importante usar ambos juntos: `rel="noopener noreferrer"` cuando se usa `target="_blank"`. Ya que si se itiliza `window.parent` en la página destino, se puede tener acceso a la ventana original y manipularla, lo que puede ser un riesgo de seguridad.
