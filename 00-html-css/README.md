@@ -20,6 +20,7 @@ Breve resumen de etiquetas, metaetiquetas, accesibilidad y recomendaciones para 
     - [Cuándo usar cada uno](#cuándo-usar-cada-uno)
     - [Buenas prácticas (rápido)](#buenas-prácticas-rápido)
   - [Ejemplos](#ejemplos)
+  - [Enlaces](#enlaces)
 
 ---
 
@@ -296,3 +297,13 @@ https://www.ejemplo.com/producto/?utm_source=facebook&utm_campaign=promo
   />
 </head>
 ```
+
+---
+
+## Enlaces
+
+En html se utilizan las etiquetas `<a>` para crear enlaces. Los atributos más comunes son:
+
+- `href`: especifica la URL del destino del enlace.
+- `target`: define dónde se abrirá el enlace (por ejemplo, `_blank` para abrir en una nueva pestaña).
+- `rel`: define la relación entre el documento actual y el destino del enlace (por ejemplo, `noopener` para mejorar la seguridad al abrir en una nueva pestaña).

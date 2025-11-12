@@ -33,3 +33,17 @@ Las unidades de medida en CSS son esenciales para definir tamaños, distancias y
 - **vw (viewport width)**: Unidad relativa que representa un porcentaje del ancho de la ventana gráfica (viewport). 1vw es igual al 1% del ancho de la ventana.
 - **vh (viewport height)**: Similar a vw, pero representa un porcentaje de la altura de la ventana gráfica. 1vh es igual al 1% de la altura de la ventana.
   Estas unidades permiten a los desarrolladores web crear diseños flexibles y adaptativos que pueden ajustarse a diferentes tamaños de pantalla y resoluciones.
+
+## Media Queries
+
+### Ejemplo de Media Queries
+
+```css
+/* Estilos para pantallas con un ancho máximo de 600px */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+    background-color: lightgray;
+  }
+}
+```
