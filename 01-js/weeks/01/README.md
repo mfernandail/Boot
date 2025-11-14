@@ -5,6 +5,15 @@
 3. Métodos de objetos (Object.keys, values, entries)
 4. Referencias vs valores primitivos
 
+---
+
+## Contenido
+
+- [1. Métodos de arrays](#1-métodos-de-arrays)
+- [2. Spread operator y destructuring](#2-spread-operator-y-destructuring)
+- [3. Métodos de objetos](#3-métodos-de-objetos)
+- [4. Referencias vs valores primitivos](#4-referencias-vs-valores-primitivos)
+
 ## 1. Métodos de arrays
 
 map, filter, reduce y forEach son métodos muy útiles para trabajar con arrays en JavaScript.
@@ -46,6 +55,29 @@ El spread operator (`...`) y el destructuring son características de ES6 que fa
 - Shallow copy: El spread operator crea una copia superficial, lo que significa que si el array u objeto contiene otros objetos o arrays, solo se copiarán las referencias a esos objetos, no los objetos en sí. Esto puede llevar a modificaciones no deseadas en los datos originales.
 - Confundir spread con rest parameters: Aunque ambos usan `...`, el spread operator se usa para expandir elementos, mientras que los rest parameters se usan para agrupar múltiples elementos en un solo array.
 - El uso execesivo del spread operator puede afectar el rendimiento, especialmente con arrays u objetos grandes, ya que crea copias adicionales en memoria.
+- Para hacer una copia profunda (deep copy) de un objeto o array, se deben usar otras técnicas como `JSON.parse(JSON.stringify(obj))` o la opcion mas moderna `structuredClone(obj)`.
+- Ejemplo de bug de shallow copy:
+
+```javascript
+const usuario = {
+  nombre: 'Ana',
+  direccion: {
+    ciudad: 'Madrid',
+    pais: 'España',
+  },
+}
+const copiaUsuario = { ...usuario }
+copiaUsuario.direccion.ciudad = 'Barcelona'
+console.log(usuario.direccion.ciudad) // 'Barcelona' ← ¡El objeto original fue modificado!
+
+const copiaProfundaUsuario = JSON.parse(JSON.stringify(usuario))
+copiaProfundaUsuario.direccion.ciudad = 'Valencia'
+console.log(usuario.direccion.ciudad) // 'Barcelona' ← El objeto original NO fue
+
+const copiadoProfundoUsuario2 = structuredClone(usuario)
+copiadoProfundoUsuario2.direccion.ciudad = 'Sevilla'
+console.log(usuario.direccion.ciudad) // 'Barcelona' ← El objeto original NO fue modificado
+```
 
 ### Destructuring
 
@@ -92,5 +124,61 @@ console.log(Object.entries(obj)) // [['a', 1], ['b', 2], ['c', 3]]
 
 ## 4. Referencias vs valores primitivos
 
+### Primitivos:
+
 - Los valores primitivos son string, number, boolean, null, undefined, symbol, bigint.
+- Se copian por valor. El typeof de un string es "string". El de un number es "number". El de un boolean es "boolean". El de null es "object" (esto es un bug historico). El de undefined es "undefined". El de symbol es "symbol". El de bigint es "bigint". Copiar por valor significa que cuando asignas un valor primitivo a una variable, se crea una copia independiente de ese valor.
+- Ejemplo:
+
+  ```javascript
+  let a = 5
+  let b = a // Se COPIA el valor 5 a b
+
+  console.log(a); // 5
+  console.log(b); // 5
+
+  b = 10; // Cambio b
+
+  console.log(a); // 5 ← ¡a NO cambió!
+  console.log(b); // 10
+
+  ### Lo que pasa en memoria:
+
+  Memoria:
+  ┌─────────┐
+  │ a = 5   │ ← Variable 'a' tiene su propia caja con el 5
+  └─────────┘
+
+  ┌─────────┐
+  │ b = 5   │ ← Variable 'b' tiene SU PROPIA caja con una COPIA del 5
+  └─────────┘
+
+  Son dos cajas completamente independientes
+
+  ```
+
+### Referencias:
+
 - Los valores por referencia son objetos (incluyendo arrays y funciones). El type of de un objeto es "object". Y el de un array es "object" tambien. Y el de una funcion es "function".
+- Se copian por referencia. Copiar por referencia significa que cuando asignas un objeto a una variable, en realidad estás asignando una referencia (o puntero) a ese objeto en memoria. Por lo tanto, si modificas el objeto a través de una variable, los cambios serán visibles a través de cualquier otra variable que haga referencia al mismo objeto.
+
+### Bugs comunes:
+
+- Confundir la copia por valor con la copia por referencia. Modificar un objeto a través de una variable afecta a todas las referencias a ese objeto.
+- Ejemplo. El bug de las "dos variables apuntando al mismo objeto":
+
+  ```javascript
+  let obj1 = { a: 1 }
+  let obj2 = obj1
+  obj2.a = 2
+  console.log(obj1.a) // 2
+  ```
+
+```
+
+- Comparación de objetos: {} === {} es false (diferentes referencias)
+- Arrays pasados a funciones: Modificar un array en una función afecta el original
+- El infamous "cannot read property of undefined": Intentar acceder a propiedades de objetos que no existen
+
+- NaN es un valor primitivo especial que representa "Not a Number". Y su type of es "number".
+```
