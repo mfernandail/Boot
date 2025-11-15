@@ -101,3 +101,16 @@ Math.max() < Math.min() // true ← ¿¡QUÉ!?
 - `Math.max()` sin argumentos devuelve `-Infinity` porque no hay números para comparar, y cualquier número es mayor que `-Infinity`.
 - `Math.min()` sin argumentos devuelve `Infinity` porque no hay números para comparar, y cualquier número es menor que `Infinity`.
 - Por lo tanto, `Math.max()` (que es `-Infinity`) es efectivamente menor que `Math.min()` (que es `Infinity`), haciendo que la expresión `Math.max() < Math.min()` sea `true`.
+
+## ✅ Reglas de Oro:
+
+1. Siempre usa === nunca == (excepto == null para null/undefined)
+2. Siempre usa let/const, nunca var
+3. Array.isArray() para verificar arrays
+4. Siempre especifica la base en parseInt()
+5. No uses delete con arrays, usa splice o filter
+6. Siempre usa comparador con sort() para números
+7. Arrow functions para preservar this
+8. Number.isNaN() en vez de isNaN()
+9. Array.from() o spread en vez de Array(n)
+10. Usa siempre paréntesis para evitar ambigüedades con objetos y arrays en expresiones
