@@ -60,3 +60,38 @@ const agrupar = palabras.reduce((acc, el) => {
 }, {})
 
 console.log(agrupar)
+
+const calificaciones = [
+  { estudiante: 'Ana', materia: 'Matemáticas', nota: 8 },
+  { estudiante: 'Ana', materia: 'Historia', nota: 9 },
+  { estudiante: 'Carlos', materia: 'Matemáticas', nota: 7 },
+  { estudiante: 'Carlos', materia: 'Historia', nota: 8 },
+  { estudiante: 'Ana', materia: 'Ciencias', nota: 10 },
+  { estudiante: 'Carlos', materia: 'Ciencias', nota: 6 },
+]
+
+// TODO: Calcula el promedio de cada estudiante
+// Resultado esperado:
+// {
+//   Ana: 9,        // (8 + 9 + 10) / 3
+//   Carlos: 7      // (7 + 8 + 6) / 3
+// }
+
+const resCalificaciones = calificaciones.reduce((acc, { estudiante, nota }) => {
+  acc[estudiante] = acc[estudiante] || { nota: 0, cant: 0 }
+  acc[estudiante].nota += nota
+  acc[estudiante].cant++
+  return acc
+}, {})
+
+console.log(resCalificaciones)
+
+const res = Object.entries(resCalificaciones).map(
+  ([nombre, { nota, cant }]) => {
+    return {
+      [nombre]: nota / cant,
+    }
+  }
+)
+
+console.log(res)
