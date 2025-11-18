@@ -95,3 +95,35 @@ const res = Object.entries(resCalificaciones).map(
 )
 
 console.log(res)
+
+// Ejercicio 6: Dos Niveles - Total Simple
+
+const tiendas = {
+  tienda1: {
+    productos: {
+      prod1: { nombre: 'Laptop', precio: 1200 },
+      prod2: { nombre: 'Mouse', precio: 25 },
+    },
+  },
+  tienda2: {
+    productos: {
+      prod3: { nombre: 'Teclado', precio: 80 },
+      prod4: { nombre: 'Monitor', precio: 300 },
+    },
+  },
+}
+// TODO: Suma TODOS los precios de TODAS las tiendas
+// Resultado esperado: 1605
+const resultado6 = Object.entries(tiendas).reduce(
+  (acc, [tienda, { productos }]) => {
+    acc += Object.values(productos).reduce((acc, { precio }) => {
+      acc += precio
+      return acc
+    }, null)
+
+    return acc
+  },
+  null
+)
+
+console.log(resultado6)
