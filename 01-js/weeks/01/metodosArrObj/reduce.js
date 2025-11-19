@@ -127,3 +127,53 @@ const resultado6 = Object.entries(tiendas).reduce(
 )
 
 console.log(resultado6)
+
+// Ejercicio 9: Con Array Anidado por Grupo
+
+const equipos = {
+  alpha: {
+    miembros: {
+      m1: { nombre: 'Ana', puntos: [10, 15, 20] },
+      m2: { nombre: 'Carlos', puntos: [12, 18, 14] },
+    },
+  },
+  beta: {
+    miembros: {
+      m3: { nombre: 'María', puntos: [25, 30] },
+      m4: { nombre: 'Pedro', puntos: [15, 20, 25] },
+    },
+  },
+}
+
+// TODO: Por cada equipo, calcula:
+// - totalPuntos: suma de TODOS los puntos del equipo
+// - cantidad: número de miembros
+
+// Resultado esperado:
+// {
+//   alpha: { totalPuntos: 89, cantidad: 2 },
+//   beta: { totalPuntos: 115, cantidad: 2 }
+// }
+
+const resultado9 = Object.entries(equipos).reduce(
+  (acc, [equipo, { miembros }]) => {
+    acc[equipo] = Object.values(miembros).reduce(
+      (acc, { nombre, puntos }) => {
+        acc.totalPuntos += Object.values(puntos).reduce((acc, el) => {
+          acc += el
+          return acc
+        }, 0)
+
+        acc.cantidad++
+        return acc
+      },
+      { totalPuntos: 0, cantidad: 0 }
+    )
+    return acc
+  },
+  {}
+)
+
+resultado9
+
+//Ejercicio 09
