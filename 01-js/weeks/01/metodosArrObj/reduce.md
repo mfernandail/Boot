@@ -50,3 +50,12 @@ arr.reduce((a, b) => a + b)
 - Sin embargo:
   - Para la mayoría de los casos la diferencia es insignificante.
   - Solo importa en arrays gigantes (100.000+ elementos).
+
+## Resumen corto
+
+- reduce() sirve para reducir/transfomar un array en cualquier valor.
+- Es poderoso pero poco intuitivo al principio.
+- Rendimiento: bueno, ligeramente peor que un for.
+- Ideal para estructurar datos, agrupar, sumar, transformar.
+- Evitar cuando la lógica es larga o cuando se necesita romper el loop.
+- Mantener siempre un valor inicial y un acumulador claro.
