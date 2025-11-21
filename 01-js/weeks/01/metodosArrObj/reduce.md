@@ -43,10 +43,11 @@ arr.reduce((a, b) => a + b)
 - Las operaciones funcionales como reduce(), map(), filter(), etc.:
 - Son rápidas y eficientes, comparables a un for.
 - Pero ligeramente más lentas que un for tradicional simple, porque:
+
   - llaman a una función en cada iteración
   - crean un nuevo scope para cada llamada
   - no pueden ser optimizados tan agresivamente como un loop simple
-  -
+
 - Sin embargo:
   - Para la mayoría de los casos la diferencia es insignificante.
   - Solo importa en arrays gigantes (100.000+ elementos).
