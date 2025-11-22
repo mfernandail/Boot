@@ -68,3 +68,17 @@ Interpretación del rendimiento
 - Necesitas romper el loop
 - La lógica es muy larga
 - El rendimiento es crítico en arrays gigantes
+
+## Regla de oro (version simple)
+
+✔ Usa reduce cuando el resultado final sea una sola cosa:
+
+- un número
+- un objeto
+- un array
+- un mapa
+- un valor combinado
+
+❌ No uses reduce cuando:
+
+- El objetivo sea recorrer, transformar 1→1, filtrar, o buscar.
