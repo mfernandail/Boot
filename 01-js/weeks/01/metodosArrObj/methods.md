@@ -27,3 +27,51 @@
 | **join**        | Une todos los elementos en un string                   | String                                  | ⭐⭐⭐⭐☆ — rápido, depende del tamaño del array                            |
 | **fill**        | Rellena el array con un valor (muta)                   | El mismo array relleno                  | ⭐⭐⭐⭐☆ — rápido, muta el array                                           |
 | **split**       | Divide un string en un array                           | Nuevo array                             | ⭐⭐⭐⭐☆ — rápido, depende del tamaño del string                           |
+
+## Formas de clonas un array
+
+Hay varias formas de clonar un array sin mutar el original:
+
+```js
+const original = [1, 2, 3]
+
+const copia1 = original.slice()
+const copia2 = original.slice(0)
+const copia3 = [...original]
+const copia4 = Array.from(original)
+```
+
+## Flat
+
+`flat()` crea un nuevo array aplanando sub-arrays hasta la profundidad especificada (por defecto 1):
+
+```js
+const profundo = [1, [2, [3, [4, 5]]]]
+
+profundo.flat() // [1, 2, [3, [4, 5]]] - 1 nivel (default)
+profundo.flat(2) // [1, 2, 3, [4, 5]] - 2 niveles
+profundo.flat(Infinity) // [1, 2, 3, 4, 5] - todos los niveles
+```
+
+## FlatMap
+
+`flatMap()` primero mapea cada elemento y luego aplana el resultado en un solo array. Es equivalente a hacer `map()` seguido de `flat(1)`:
+
+```js
+const palabras = ['Hola mundo', 'Cómo estás']
+const resultado = palabras.flatMap((frase) => frase.split(' '))
+// ["Hola", "mundo", "Cómo", "estás"]
+```
+
+## Performance relativa de métodos de array
+
+| Método           | Tiempo relativo | Observaciones                          |
+| ---------------- | --------------- | -------------------------------------- |
+| `for`            | 1x (baseline)   | Más rápido                             |
+| `for…of`         | ~1.1x           | Muy cercano                            |
+| `reduce`         | ~1.3x – 1.5x    | Callback overhead                      |
+| `forEach`        | ~1.4x           | Similar a reduce                       |
+| `map`            | ~1.5x – 1.7x    | Crea nuevo array                       |
+| `filter`         | ~1.6x – 1.8x    | También crea array                     |
+| `flatMap`        | ~2x             | Hace dos operaciones internas          |
+| `some` / `every` | ~1.1x – 1.3x    | Puede ser más rápido si rompe temprano |
