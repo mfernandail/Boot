@@ -22,3 +22,8 @@
 | **unshift**     | Agrega al inicio (muta array)                          | Nueva longitud                          | ⭐☆☆☆☆ — muy lento por reindexado                                           |
 | **slice**       | Corta una parte del array (no muta)                    | Nuevo array                             | ⭐⭐⭐⭐☆ — rápido en arrays pequeños/medianos                              |
 | **splice**      | Agrega/borra en posiciones específicas (muta)          | Elementos removidos                     | ⭐☆☆☆☆ — costoso, reindexa y muta                                           |
+| **indexOf**     | Busca un elemento y retorna su índice                  | Índice o `-1`                           | ⭐⭐⭐⭐☆ — rápido en arrays pequeños/medianos                              |
+| **reverse**     | Invierte el orden del array (muta)                     | El mismo array invertido                | ⭐⭐⭐☆☆ — costo moderado, muta el array original                           |
+| **join**        | Une todos los elementos en un string                   | String                                  | ⭐⭐⭐⭐☆ — rápido, depende del tamaño del array                            |
+| **fill**        | Rellena el array con un valor (muta)                   | El mismo array relleno                  | ⭐⭐⭐⭐☆ — rápido, muta el array                                           |
+| **split**       | Divide un string en un array                           | Nuevo array                             | ⭐⭐⭐⭐☆ — rápido, depende del tamaño del string                           |
