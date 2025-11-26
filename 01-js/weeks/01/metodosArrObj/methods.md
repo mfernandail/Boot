@@ -27,6 +27,7 @@
 | **join**        | Une todos los elementos en un string                   | String                                  | ⭐⭐⭐⭐☆ — rápido, depende del tamaño del array                            |
 | **fill**        | Rellena el array con un valor (muta)                   | El mismo array relleno                  | ⭐⭐⭐⭐☆ — rápido, muta el array                                           |
 | **split**       | Divide un string en un array                           | Nuevo array                             | ⭐⭐⭐⭐☆ — rápido, depende del tamaño del string                           |
+| **set**         | Crea un conjunto de valores únicos                     | Nuevo Set                               | ⭐⭐⭐⭐☆ — rápido, depende del tamaño del array                            |
 
 ## Formas de clonas un array
 
