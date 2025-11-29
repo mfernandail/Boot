@@ -39,6 +39,16 @@ const cursos = [
 // (Un estudiante puede estar en varios cursos)
 // Resultado esperado: ['Carlos', 'María', 'Pedro', 'Ana', 'Luis']
 
+const a = [...new Set(
+  cursos.flatMap(curso => 
+    curso.estudiantes.map(estudiante => estudiante.nombre)
+  )
+)]
+
+console.log('A) Estudiantes únicos:', a)
+
+
+
 // B) Promedio de calificaciones de todos los cursos
 
 // C) Cursos de 'Ana García' ordenados por precio (mayor a menor)
