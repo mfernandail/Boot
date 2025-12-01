@@ -51,6 +51,15 @@ console.log('A) Estudiantes únicos:', a)
 
 // B) Promedio de calificaciones de todos los cursos
 
+const b = cursos.reduce((acc, curso) => {
+  const totalCalificaciones = curso.estudiantes.reduce((sum, estudiante) => sum + estudiante.calificacion, 0)
+  return acc + totalCalificaciones
+}, 0) / cursos.reduce((total, curso) => total + curso.estudiantes.length, 0)
+
+console.log('B) Promedio de calificaciones:', b)
+
+
+
 // C) Cursos de 'Ana García' ordenados por precio (mayor a menor)
 
 // D) ¿Todos los cursos tienen al menos un estudiante que completó (progreso 100)?
