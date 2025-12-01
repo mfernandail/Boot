@@ -58,7 +58,18 @@ const b = cursos.reduce((acc, curso) => {
 
 console.log('B) Promedio de calificaciones:', b)
 
+const { suma, cantidad } = cursos.reduce(
+  (acc, curso) => {
+    curso.estudiantes.forEach(e => {
+      acc.suma += e.calificacion
+      acc.cantidad++
+    })
+    return acc
+  },
+  { suma: 0, cantidad: 0 }
+)
 
+const promedio = suma / cantidad
 
 // C) Cursos de 'Ana García' ordenados por precio (mayor a menor)
 
