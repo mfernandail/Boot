@@ -114,3 +114,17 @@ console.log('G) Curso con mayor cantidad de estudiantes:', cursoMasEstudiantes)
 
 // H) Total de ingresos si todos los estudiantes pagaron
 // (cantidad de estudiantes * precio del curso, sumado de todos los cursos)
+
+const h = cursos.reduce((acc, curso) => {
+  return acc + curso.estudiantes.length * curso.precio
+}, 0)
+
+console.log('H) Total de ingresos si todos pagaron:', h)
+
+// F) Lista de todas las categorías únicas
+const totalIngresos = cursos.reduce((acc, el) => {
+  acc += el.estudiantes.length * el.precio
+  return acc
+}, 0)
+
+console.log('F) Categorías únicas:', f)
