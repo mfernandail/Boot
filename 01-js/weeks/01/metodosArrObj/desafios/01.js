@@ -84,12 +84,33 @@ const c = cursos
 console.log('C) Cursos de Ana García ordenados por precio:', c)
 
 // D) ¿Todos los cursos tienen al menos un estudiante que completó (progreso 100)?
+const d = cursos.every((curso) =>
+  curso.estudiantes.some((estudiante) => estudiante.progreso === 100)
+)
 
 // E) Estudiantes que completaron todos los cursos en los que están inscritos
+const e = cursos
+  .flatMap((curso) =>
+    curso.estudiantes
+      .filter((estudiante) => estudiante.progreso === 100)
+      .map((estudiante) => estudiante.nombre)
+  )
+  .filter((nombre, index, self) => self.indexOf(nombre) === index)
+
+console.log('E) Estudiantes que completaron todos sus cursos:', e)
 
 // F) Lista de todas las categorías únicas
 
 // G) Curso con mayor cantidad de estudiantes
+const cursoMasEstudiantes = cursos
+  .map((curso) => ({
+    nombre: curso.titulo,
+    instructoe: curso.instructor,
+    cantidad: curso.estudiantes.length,
+  }))
+  .sort((a, b) => b.cantidad - a.cantidad)[0]
+
+console.log('G) Curso con mayor cantidad de estudiantes:', cursoMasEstudiantes)
 
 // H) Total de ingresos si todos los estudiantes pagaron
 // (cantidad de estudiantes * precio del curso, sumado de todos los cursos)
