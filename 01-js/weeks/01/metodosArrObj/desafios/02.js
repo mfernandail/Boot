@@ -64,6 +64,18 @@ const nombreVendedorMayorVentas = Object.entries(vendedorMayorVentas).sort(
 console.log(nombreVendedorMayorVentas)
 
 // B) Cliente que más ha comprado (por monto total)
+const clienteConMasCompras = ventas.reduce((acc, el) => {
+  if (!acc[el.cliente]) {
+    acc[el.cliente] = 0
+  }
+  acc[el.cliente] += el.monto
+  return acc
+}, {})
+const nombreClienteMasCompras = Object.entries(clienteConMasCompras).sort(
+  (a, b) => b[1] - a[1]
+)[0][0]
+
+console.log(nombreClienteMasCompras)
 
 // C) Mes con mayores ventas
 
