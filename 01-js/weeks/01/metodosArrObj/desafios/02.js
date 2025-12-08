@@ -112,11 +112,43 @@ let nombreProductoTopTres = Object.entries(topTresProductosMasVendidos)
 console.log(nombreProductoTopTres)
 
 // E) Promedio de venta por transacción
+const promedioVentasPorTransaccion =
+  ventas.reduce((acc, el) => {
+    acc += el.monto
+    return acc
+  }, 0) / ventas.length
+
+console.log(promedioVentasPorTransaccion)
 
 // F) ¿Todos los vendedores tienen al menos una venta?
 // (vendedores conocidos: ['Ana', 'Carlos', 'María', 'Pedro'])
+const vendedoresConVentas = ventas.map((el) => el.vendedor)
+const vendedoresConVentaUnica = [...new Set(vendedoresConVentas)]
+const vendedoresConVenta = ['Ana', 'Carlos', 'María', 'Pedro'].every(
+  (vendedor) => vendedoresConVentaUnica.includes(vendedor)
+)
+
+console.log(vendedoresConVenta)
 
 // G) Ventas agrupadas por mes con totales
 // Formato: { Enero: 8000, Febrero: 11000, Marzo: 8000 }
+const ventasPorMes = ventas.reduce((acc, el) => {
+  if (!acc[el.mes]) {
+    acc[el.mes] = 0
+  }
+
+  acc[el.mes] += el.monto
+
+  return acc
+}, {})
+console.log(ventasPorMes)
 
 // H) Lista de clientes únicos que compraron 'Laptop'
+const listaClientesLaptop = [
+  ...new Set(
+    ventas
+      .filter((producto) => producto.productos.includes('Laptop'))
+      .map((cliente) => cliente.cliente)
+  ),
+]
+console.log(listaClientesLaptop)
