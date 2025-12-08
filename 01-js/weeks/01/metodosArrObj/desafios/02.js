@@ -78,8 +78,38 @@ const nombreClienteMasCompras = Object.entries(clienteConMasCompras).sort(
 console.log(nombreClienteMasCompras)
 
 // C) Mes con mayores ventas
+const mesConMayorVentas = ventas.reduce((acc, el) => {
+  if (!acc[el.mes]) {
+    acc[el.mes] = 0
+  }
+
+  acc[el.mes] += el.monto
+  return acc
+}, {})
+
+const nombreMesMayorVentas = Object.entries(mesConMayorVentas).sort(
+  (a, b) => b[1] - a[1]
+)[0][0]
+
+console.log(nombreMesMayorVentas)
 
 // D) Top 3 productos más vendidos (por cantidad de veces que aparecen)
+const topTresProductosMasVendidos = ventas.reduce((acc, { productos }) => {
+  productos.forEach((producto) => {
+    if (!acc[producto]) {
+      acc[producto] = 0
+    }
+    acc[producto]++
+  })
+  return acc
+}, {})
+
+let nombreProductoTopTres = Object.entries(topTresProductosMasVendidos)
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 3)
+  .map((p) => p[0])
+
+console.log(nombreProductoTopTres)
 
 // E) Promedio de venta por transacción
 
