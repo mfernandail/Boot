@@ -50,6 +50,18 @@ const ventas = [
 ]
 
 // A) Vendedor con mayores ventas totales
+const vendedorMayorVentas = ventas.reduce((acc, el) => {
+  if (!acc[el.vendedor]) {
+    acc[el.vendedor] = 0
+  }
+  acc[el.vendedor] += el.monto
+  return acc
+}, {})
+
+const nombreVendedorMayorVentas = Object.entries(vendedorMayorVentas).sort(
+  (a, b) => b[1] - a[1]
+)[0][0]
+console.log(nombreVendedorMayorVentas)
 
 // B) Cliente que más ha comprado (por monto total)
 
