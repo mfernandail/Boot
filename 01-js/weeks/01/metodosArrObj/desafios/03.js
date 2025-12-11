@@ -42,6 +42,11 @@ const pacientes = [
 ]
 
 // A) Total de consultas en el sistema
+const totalConsultas = pacientes.reduce((acc, { consultas }) => {
+  acc += consultas.length
+  return acc
+}, 0)
+console.log('Total de consultas:', totalConsultas)
 
 // B) Paciente con mayor gasto acumulado
 
