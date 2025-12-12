@@ -49,8 +49,28 @@ const totalConsultas = pacientes.reduce((acc, { consultas }) => {
 console.log('Total de consultas:', totalConsultas)
 
 // B) Paciente con mayor gasto acumulado
+const pacienteMayorGastoAcc = pacientes.reduce(
+  (acc_resultado, el_consultas) => {
+    acc_resultado[el_consultas.nombre] = el_consultas.consultas.reduce(
+      (acc_suma, el_costo) => {
+        acc_suma += el_costo.costo
+        return acc_suma
+      },
+      0
+    )
+    return acc_resultado
+  },
+  {}
+)
 
 // C) ¿Todos los pacientes con más de 60 años tienen seguro?
+const pacientesMas60 = pacientes
+  .filter((paciente) => paciente.edad > 60)
+  .every((paciente) => paciente.seguro)
+console.log(
+  '¿Todos los pacientes con más de 60 años tienen seguro?',
+  pacientesMas60
+)
 
 // D) Promedio de edad de pacientes
 
