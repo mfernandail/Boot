@@ -73,11 +73,62 @@ console.log(
 )
 
 // D) Promedio de edad de pacientes
+const promedioEdad = pacientes.reduce((acc, { edad }) => {
+  acc += edad / pacientes.length
+  return acc
+}, 0)
+console.log('Promedio de edad de pacientes:', promedioEdad)
+
+const promedioEdadPacientes =
+  pacientes.reduce((acc, el) => {
+    acc += el.edad
+    return acc
+  }, 0) / pacientes.length
 
 // E) Diagnósticos únicos en el sistema
+const diagnosticosUnicos = [
+  ...new Set(
+    pacientes.flatMap(({ consultas }) => consultas).map((d) => d.diagnostico)
+  ),
+]
+console.log('Diagnósticos únicos en el sistema:', diagnosticosUnicos)
 
 // F) Pacientes sin seguro que han gastado más de $50
+const pacientesSinSeguroGasto50 = pacientes.filter((paciente) => {
+  const gastoTotal = paciente.consultas.reduce((acc, { costo }) => {
+    acc += costo
+    return acc
+  }, 0)
+  return !paciente.seguro && gastoTotal > 50
+})
+
+console.log(
+  'Pacientes sin seguro que han gastado más de $50:',
+  pacientesSinSeguroGasto50
+)
 
 // G) Total de ingresos del hospital
+const totalIngresos1 = pacientes.reduce((acc_pacientes, { consultas }) => {
+  acc_pacientes += consultas.reduce((acc_consulta, { costo }) => {
+    acc_consulta += costo
+    return acc_consulta
+  }, 0)
+  return acc_pacientes
+}, 0)
+
+console.log('Total de ingresos del hospital:', totalIngresos1)
 
 // H) Paciente más joven con al menos 2 consultas
+const pacienteMasJoven2Consultas = pacientes
+  .filter((paciente) => paciente.consultas.length >= 2)
+  .reduce((acc, paciente) => {
+    if (!acc || paciente.edad < acc.edad) {
+      return paciente
+    }
+    return acc
+  }, null)
+
+console.log(
+  'Paciente más joven con al menos 2 consultas:',
+  pacienteMasJoven2Consultas
+)
