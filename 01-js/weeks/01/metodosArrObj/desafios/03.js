@@ -138,3 +138,11 @@ console.log(
   'Paciente más joven con al menos 2 consultas:',
   pacienteMasJoven2Consultas
 )
+
+const pacienteMasJoven2Consultas_v2 = pacientes
+  .filter((p) => p.consultas.length >= 2)
+  .reduce((acc, el) => (el.edad < acc.edad ? el : acc))
+console.log(
+  'Paciente más joven con al menos 2 consultas v2:',
+  pacienteMasJoven2Consultas_v2
+)
