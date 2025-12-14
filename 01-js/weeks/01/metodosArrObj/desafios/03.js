@@ -115,10 +115,10 @@ console.log(
 
 // G) Total de ingresos del hospital
 const totalIngresos1 = pacientes.reduce((acc_pacientes, { consultas }) => {
-  acc_pacientes += consultas.reduce((acc_consulta, { costo }) => {
-    acc_consulta += costo
-    return acc_consulta
-  }, 0)
+  acc_pacientes += consultas.reduce(
+    (acc_consulta, { costo }) => (acc_consulta += costo),
+    0
+  )
   return acc_pacientes
 }, 0)
 
