@@ -42,17 +42,60 @@ const peliculas = [
 ]
 
 // A) Películas de los últimos 15 años (>= 2010) ordenadas por calificación
+const busqueda = new Date().getFullYear() - 15
+const peliculasUltimos15Years = peliculas
+  .filter((pelicula) => pelicula.año >= busqueda)
+  .sort((a, b) => b.calificacion - a.calificacion)
+console.log(
+  'Películas de los últimos 15 años ordenadas por calificación:',
+  peliculasUltimos15Years
+)
 
 // B) Directores únicos
+const directoresUnicos = [
+  ...new Set(peliculas.map((pelicula) => pelicula.director)),
+]
+console.log('Directores únicos:', directoresUnicos)
 
 // C) Película mejor calificada
+const peliculaMejorCalificada = peliculas.reduce((acc, el) => {
+  if (!acc || acc.calificacion < el.calificacion) {
+    return el
+  }
+  return acc
+}, null)
 
 // D) Todos los géneros únicos
+const generosUnicos = [
+  ...new Set(peliculas.flatMap((genero) => genero.generos)),
+]
+console.log('Géneros únicos:', generosUnicos)
 
 // E) Promedio de calificación de películas de Christopher Nolan
+const peliculasNolan =
+  peliculas
+    .filter((pelicula) => pelicula.director === 'Christopher Nolan')
+    .reduce((acc, el) => {
+      acc += el.calificacion
+      return acc
+    }, 0) / peliculas.length
+console.log(
+  'Promedio de calificación de películas de Christopher Nolan:',
+  peliculasNolan
+)
 
 // F) ¿Hay alguna película con calificación perfecta (10)?
+const perfecta = peliculas.some((pelicula) => pelicula.calificacion === 10)
+console.log('¿Hay alguna película con calificación perfecta (10)?', perfecta)
 
 // G) Actores únicos en todo el sistema
+const actoresUnicos = [...new Set(peliculas.flatMap((actor) => actor.actores))]
+console.log('Actores únicos en todo el sistema:', actoresUnicos)
 
 // H) Películas que tienen 'Drama' en sus géneros, ordenadas por año
+const peliculasDrama = peliculas
+  .filter((pelicula) => pelicula.generos.includes('Drama'))
+  .sort((a, b) => a.año - b.año)
+console.log('Películas con género Drama ordenadas por año:', peliculasDrama)
+
+// I) Títulos de películas lanzadas antes del 2000
