@@ -72,16 +72,17 @@ const generosUnicos = [
 console.log('Géneros únicos:', generosUnicos)
 
 // E) Promedio de calificación de películas de Christopher Nolan
-const peliculasNolan =
-  peliculas
-    .filter((pelicula) => pelicula.director === 'Christopher Nolan')
-    .reduce((acc, el) => {
-      acc += el.calificacion
-      return acc
-    }, 0) / peliculas.length
+const peliculasNolan = peliculas.filter(
+  (pelicula) => pelicula.director === 'Christopher Nolan'
+)
+const peliculasNolanRes =
+  peliculasNolan.reduce((acc, el) => {
+    acc += el.calificacion
+    return acc
+  }, 0) / peliculasNolan.length
 console.log(
   'Promedio de calificación de películas de Christopher Nolan:',
-  peliculasNolan
+  peliculasNolanRes
 )
 
 // F) ¿Hay alguna película con calificación perfecta (10)?
