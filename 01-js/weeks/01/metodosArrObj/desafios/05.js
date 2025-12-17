@@ -43,13 +43,13 @@ const totalCarritoAna = usuarios.reduce((acc, el) => {
   }
   return acc
 }, 0)
-console.log(`Total del carrito de Ana: $${totalCarritoAna.toFixed(2)}`)
 
 // B) Usuario con carrito más caro (sin descuentos)
 const usuarioCarritoMasCaro = usuarios.reduce(
   (acc_carrito, el_carrito) => {
     const total_calc = el_carrito.carrito.reduce(
-      (acc_total, el_total) => (acc_total += el_total.precio),
+      (acc_total, el_total) =>
+        (acc_total += el_total.precio * el_total.cantidad),
       0
     )
 
@@ -63,24 +63,64 @@ const usuarioCarritoMasCaro = usuarios.reduce(
   },
   { nombre: '', total: 0 }
 )
-console.log(
-  `Usuario con carrito más caro: ${
-    usuarioCarritoMasCaro.nombre
-  } con un total de $${usuarioCarritoMasCaro.total.toFixed(2)}`
-)
 
 // C) ¿Algún usuario tiene el carrito vacío?
 const algunCarritoVacio = usuarios.some(
   (usuario) => usuario.carrito.length === 0
 )
-console.log(`¿Algún usuario tiene el carrito vacío? ${algunCarritoVacio}`)
 
 // D) Total histórico de compras de todos los usuarios
+const totalHistoricoCompras = usuarios.reduce((acc_total, el_total) => {
+  acc_total += el_total.historialCompras.reduce(
+    (acc_historico, el_historico) => (acc_historico += el_historico.total),
+    0
+  )
+  return acc_total
+}, 0)
 
 // E) Usuario con mayor gasto histórico
+const usuarioMayorGastos = usuarios.reduce(
+  (acc_usuario, el_usuario) => {
+    const total = el_usuario.historialCompras.reduce(
+      (acc_historico, el_historico) => (acc_historico += el_historico.total),
+      0
+    )
+    if (!acc_usuario.nombre || acc_usuario.total < total) {
+      return {
+        nombre: el_usuario.nombre,
+        total: total,
+      }
+    }
+    return acc_usuario
+  },
+  { nombre: '', total: 0 }
+)
 
 // F) Productos únicos en todos los carritos
+const productosUnicos = [
+  ...new Set(
+    usuarios.flatMap((producos) =>
+      producos.carrito.map((producto) => producto.producto)
+    )
+  ),
+]
 
 // G) Promedio del valor del carrito (con descuentos) de usuarios que tienen productos
+const promedioConProductos = usuarios.filter(
+  (usuario) => usuario.carrito.length !== 0
+)
+const promedioTotalConProductos =
+  promedioConProductos.reduce((acc_prom, el_prom) => {
+    acc_prom += el_prom.carrito.reduce(
+      (acc_carrito, el_carrito) =>
+        (acc_carrito +=
+          el_carrito.cantidad * el_carrito.precio * (1 - el_carrito.descuento)),
+      0
+    )
+    return acc_prom
+  }, 0) / promedioConProductos.length
 
 // H) ¿Todos los usuarios tienen al menos una compra histórica?
+const usuariosCompraHistorica = usuarios.every(
+  (usuario) => usuario.historialCompras.length > 0
+)
