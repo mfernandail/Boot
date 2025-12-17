@@ -32,10 +32,48 @@ const usuarios = [
 
 // A) Total del carrito de Ana (con descuentos aplicados)
 // Formula: precio * cantidad * (1 - descuento)
+const totalCarritoAna = usuarios.reduce((acc, el) => {
+  if (el.nombre === 'Ana') {
+    acc += el.carrito.reduce(
+      (acc_carrito, el_carrito) =>
+        (acc_carrito +=
+          el_carrito.precio * el_carrito.cantidad * (1 - el_carrito.descuento)),
+      0
+    )
+  }
+  return acc
+}, 0)
+console.log(`Total del carrito de Ana: $${totalCarritoAna.toFixed(2)}`)
 
 // B) Usuario con carrito más caro (sin descuentos)
+const usuarioCarritoMasCaro = usuarios.reduce(
+  (acc_carrito, el_carrito) => {
+    const total_calc = el_carrito.carrito.reduce(
+      (acc_total, el_total) => (acc_total += el_total.precio),
+      0
+    )
+
+    if (!acc_carrito || acc_carrito.total < total_calc) {
+      return {
+        nombre: el_carrito.nombre,
+        total: total_calc,
+      }
+    }
+    return acc_carrito
+  },
+  { nombre: '', total: 0 }
+)
+console.log(
+  `Usuario con carrito más caro: ${
+    usuarioCarritoMasCaro.nombre
+  } con un total de $${usuarioCarritoMasCaro.total.toFixed(2)}`
+)
 
 // C) ¿Algún usuario tiene el carrito vacío?
+const algunCarritoVacio = usuarios.some(
+  (usuario) => usuario.carrito.length === 0
+)
+console.log(`¿Algún usuario tiene el carrito vacío? ${algunCarritoVacio}`)
 
 // D) Total histórico de compras de todos los usuarios
 
