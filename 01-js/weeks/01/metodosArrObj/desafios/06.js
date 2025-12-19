@@ -40,8 +40,12 @@ const empleados = [
 ]
 
 // A) Empleados de IT ordenados por salario (mayor a menor)
+const empleadoOrdenadoSalario = empleados.sort((a, b) => b.salario - a.salario)
 
 // B) ¿Todos los empleados tienen al menos un proyecto asignado?
+const empleadosProyectos = empleados.every(
+  (empleado) => empleado.proyectos.length > 0
+)
 
 // C) Total de horas trabajadas en proyectos por todo el equipo
 
