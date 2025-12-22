@@ -48,8 +48,37 @@ const empleadosProyectos = empleados.every(
 )
 
 // C) Total de horas trabajadas en proyectos por todo el equipo
+const totalHorasPorProyectoEquipo = empleados.reduce(
+  (acc_equipo, el_equipo) => {
+    if (!acc_equipo[el_equipo.departamento]) {
+      acc_equipo[el_equipo.departamento] = 0
+    }
+    acc_equipo[el_equipo.departamento] += el_equipo.proyectos.reduce(
+      (acc_horas, el_horas) => (acc_horas += el_horas.horas),
+      0
+    )
+    return acc_equipo
+  },
+  {}
+)
 
 // D) Empleado con más horas trabajadas en proyectos
+const empleadosMasHoras = empleados.reduce(
+  (acc_empleados, el_empleados) => {
+    const horasCalc = el_empleados.proyectos.reduce(
+      (acc_horas, el_horas) => (acc_horas += el_horas.horas),
+      0
+    )
+    if (acc_empleados.horas < horasCalc) {
+      return {
+        nombre: el_empleados.nombre,
+        horas: horasCalc,
+      }
+    }
+    return acc_empleados
+  },
+  { nombre: '', horas: 0 }
+)
 
 // E) Promedio de salario por departamento
 // Formato: { IT: 4000, Marketing: 3000 }
