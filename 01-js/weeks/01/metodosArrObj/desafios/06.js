@@ -39,8 +39,9 @@ const empleados = [
   },
 ]
 
-// A) Empleados de IT ordenados por salario (mayor a menor)
-const empleadoOrdenadoSalario = empleados.sort((a, b) => b.salario - a.salario)
+const empleadoOrdenadoSalario = empleados
+  .filter((empleado) => empleado.departamento === 'IT')
+  .sort((a, b) => b.salario - a.salario)
 
 // B) ¿Todos los empleados tienen al menos un proyecto asignado?
 const empleadosProyectos = empleados.every(
@@ -49,18 +50,16 @@ const empleadosProyectos = empleados.every(
 
 // C) Total de horas trabajadas en proyectos por todo el equipo
 const totalHorasPorProyectoEquipo = empleados.reduce(
-  (acc_equipo, el_equipo) => {
-    if (!acc_equipo[el_equipo.departamento]) {
-      acc_equipo[el_equipo.departamento] = 0
-    }
-    acc_equipo[el_equipo.departamento] += el_equipo.proyectos.reduce(
+  (acc_totalHoras, el_totalHoras) => {
+    acc_totalHoras += el_totalHoras.proyectos.reduce(
       (acc_horas, el_horas) => (acc_horas += el_horas.horas),
       0
     )
-    return acc_equipo
+    return acc_totalHoras
   },
-  {}
+  0
 )
+totalHorasPorProyectoEquipo
 
 // D) Empleado con más horas trabajadas en proyectos
 const empleadosMasHoras = empleados.reduce(
@@ -82,9 +81,31 @@ const empleadosMasHoras = empleados.reduce(
 
 // E) Promedio de salario por departamento
 // Formato: { IT: 4000, Marketing: 3000 }
+const promedioSalarioDepto = empleados.reduce((acc_depto, el_depto) => {
+  if (!acc_depto[el_depto.departamento]) {
+    acc_depto[el_depto.departamento] = {
+      salarioTotal: 0,
+      contador: 0,
+    }
+  }
+
+  acc_depto[el_depto.departamento].salarioTotal += el_depto.salario
+  acc_depto[el_depto.departamento].contador += 1
+
+  return acc_depto
+}, {})
+
+const prom = Object.entries(promedioSalarioDepto).map((dep) => {
+  const totalProm = {
+    [dep[0]]: dep[1].salarioTotal / dep[1].contador,
+  }
+  return totalProm
+})
 
 // F) Habilidades únicas en la empresa
+const habilidadesUnicas = [...new Set(empleados.flatMap((h) => h.habilidades))]
 
 // G) Empleados que saben JavaScript
-
-// H) ¿Hay algún empleado con más de 6 años de antigüedad y salario menor a 4000?
+const empleadosJS = empleados.filter((empleado) =>
+  empleado.habilidades.includes('JavaScript')
+)
