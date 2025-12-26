@@ -81,26 +81,28 @@ const empleadosMasHoras = empleados.reduce(
 
 // E) Promedio de salario por departamento
 // Formato: { IT: 4000, Marketing: 3000 }
-const promedioSalarioDepto = empleados.reduce((acc_depto, el_depto) => {
-  if (!acc_depto[el_depto.departamento]) {
-    acc_depto[el_depto.departamento] = {
-      salarioTotal: 0,
-      contador: 0,
+const promedioSalarioDepartamento = empleados.reduce(
+  (acc_departamento, el_departamento) => {
+    if (!acc_departamento[el_departamento.departamento]) {
+      acc_departamento[el_departamento.departamento] = {
+        totalSalario: el_departamento.salario,
+        contador: 1,
+      }
+    } else {
+      acc_departamento[el_departamento.departamento].totalSalario +=
+        el_departamento.salario
+      acc_departamento[el_departamento.departamento].contador += 1
     }
-  }
+    return acc_departamento
+  },
+  {}
+)
 
-  acc_depto[el_depto.departamento].salarioTotal += el_depto.salario
-  acc_depto[el_depto.departamento].contador += 1
-
-  return acc_depto
-}, {})
-
-const prom = Object.entries(promedioSalarioDepto).map((dep) => {
-  const totalProm = {
-    [dep[0]]: dep[1].salarioTotal / dep[1].contador,
-  }
-  return totalProm
-})
+for (const departamento in promedioSalarioDepartamento) {
+  promedioSalarioDepartamento[departamento] =
+    promedioSalarioDepartamento[departamento].totalSalario /
+    promedioSalarioDepartamento[departamento].contador
+}
 
 // F) Habilidades únicas en la empresa
 const habilidadesUnicas = [...new Set(empleados.flatMap((h) => h.habilidades))]
