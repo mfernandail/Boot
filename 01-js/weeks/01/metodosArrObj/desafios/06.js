@@ -104,6 +104,34 @@ for (const departamento in promedioSalarioDepartamento) {
     promedioSalarioDepartamento[departamento].contador
 }
 
+// E) Forma alternativa Promedio de salario por departamento
+
+const promedioSalarioDepto = empleados.reduce((acc_depto, el_depto) => {
+  if (!acc_depto[el_depto.departamento]) {
+    acc_depto[el_depto.departamento] = {
+      salarioTotal: 0,
+      contador: 0,
+    }
+  }
+
+  acc_depto[el_depto.departamento].salarioTotal += el_depto.salario
+  acc_depto[el_depto.departamento].contador += 1
+
+  return acc_depto
+}, {})
+
+promedioSalarioDepto
+
+const resultadoPromedioSalario = Object.keys(promedioSalarioDepto).reduce(
+  (acc_dep, el_dep) => {
+    acc_dep[el_dep] =
+      promedioSalarioDepto[el_dep].salarioTotal /
+      promedioSalarioDepto[el_dep].contador
+    return acc_dep
+  },
+  {}
+)
+
 // F) Habilidades únicas en la empresa
 const habilidadesUnicas = [...new Set(empleados.flatMap((h) => h.habilidades))]
 
