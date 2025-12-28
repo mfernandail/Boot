@@ -62,6 +62,15 @@ const usuarios = [
 ]
 
 // A) Usuario con más seguidores
+const usuarioConMasSeguidores = usuarios.reduce((acc_usuario, el_usuario) => {
+  const numeroSeguidores = el_usuario.seguidores.length
+
+  if (!acc_usuario || numeroSeguidores > acc_usuario.seguidores.length) {
+    return el_usuario
+  }
+
+  return acc_usuario
+}, null)
 
 // B) Usuario con más likes totales (suma de todos sus posts)
 
