@@ -89,16 +89,42 @@ const b_usuarioConMasLikes = usuarios.reduce(
 )
 
 // C) Total de posts en la plataforma
+const totalPost = usuarios.reduce((acc_post, el_post) => {
+  acc_post += el_post.posts.length
+  return acc_post
+}, 0)
 
 // D) ¿Todos los usuarios siguen a alguien?
+const d_numeroUsuario = usuarios.every(
+  (usuario) => usuario.siguiendo.length > 0
+)
 
 // E) Promedio de seguidores por usuario
+const e_promedioSeguidores = usuarios.reduce(
+  (acc_usuario, el_usuario) => (acc_usuario += el_usuario.seguidores.length),
+  0
+)
+
+const promedioSeguidores = e_promedioSeguidores / usuarios.length
 
 // F) Post con más likes
+const f_postConMasLikes = usuarios
+  .flatMap((u) => u.posts)
+  .reduce((max, post) => (!max || post.likes > max.likes ? post : max), null)
 
 // G) Usuarios que no han publicado nada
+const g_usuarioSinPublicacion = usuarios.filter(
+  (usuario) => usuario.posts.length === 0
+)
 
 // H) Total de comentarios en la plataforma
+const h_totalComentarios = usuarios.reduce((acc_usuario, el_usuario) => {
+  acc_usuario += el_usuario.posts.reduce(
+    (acc_com, el_com) => (acc_com += el_com.comentarios.length),
+    0
+  )
+  return acc_usuario
+}, 0)
 
 // I) Usuario con mejor ratio: (total likes / cantidad posts)
 // (Ignora usuarios sin posts)
