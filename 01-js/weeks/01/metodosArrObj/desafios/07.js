@@ -73,6 +73,20 @@ const usuarioConMasSeguidores = usuarios.reduce((acc_usuario, el_usuario) => {
 }, null)
 
 // B) Usuario con más likes totales (suma de todos sus posts)
+const b_usuarioConMasLikes = usuarios.reduce(
+  (acc_usuario, el_usuario) => {
+    const likes = el_usuario.posts.reduce((acc, el) => (acc += el.likes), 0)
+
+    if (!acc_usuario || likes > acc_usuario.likesTotal) {
+      return {
+        nombre: el_usuario.username,
+        likesTotal: likes,
+      }
+    }
+    return acc_usuario
+  },
+  { nombre: '', likesTotal: 0 }
+)
 
 // C) Total de posts en la plataforma
 
