@@ -148,3 +148,9 @@ const i_usuarioMejorRatio = usuarios
 
 // J) ¿Hay alguna relación de seguimiento mutuo?
 // (A sigue a B Y B sigue a A)
+const j_relacionMutua = usuarios.some((usuarioA) =>
+  usuarioA.siguiendo.some((idSeguido) => {
+    const usuarioB = usuarios.find((u) => u.id === idSeguido)
+    return usuarioB && usuarioB.siguiendo.includes(usuarioA.id)
+  })
+)
