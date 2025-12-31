@@ -128,6 +128,23 @@ const h_totalComentarios = usuarios.reduce((acc_usuario, el_usuario) => {
 
 // I) Usuario con mejor ratio: (total likes / cantidad posts)
 // (Ignora usuarios sin posts)
+const i_usuarioMejorRatio = usuarios
+  .filter((usuario) => usuario.posts.length > 0)
+  .map((usuario) => {
+    const totalLikes = usuario.posts.reduce(
+      (acc, post) => (acc += post.likes),
+      0
+    )
+    return {
+      username: usuario.username,
+      ratio: totalLikes / usuario.posts.length,
+    }
+  })
+  .reduce(
+    (mejor, usuario) =>
+      !mejor || usuario.ratio > mejor.ratio ? usuario : mejor,
+    null
+  )
 
 // J) ¿Hay alguna relación de seguimiento mutuo?
 // (A sigue a B Y B sigue a A)
