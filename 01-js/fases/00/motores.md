@@ -51,3 +51,45 @@ JIT Compiler
    ↓
 Machine Code
 ```
+
+#### 1. Parser – “Entender el código”
+
+El parser:
+
+- Lee tu código como texto
+- Verifica sintaxis
+- Construye un AST
+
+Ejemplo:
+
+```js
+let x = 5
+```
+
+El motor lo transforma internamete a algo asi:
+
+```yaml
+VariableDeclaration
+ ├─ Identifier: x
+ └─ BinaryExpression (+)
+     ├─ Literal: 5
+     └─ Literal: 3
+```
+
+Si hay error de sintaxis → el motor ni siquiera ejecuta.
+
+#### 2. AST (Abstract Syntax Tree)
+
+Es un árbol estructurado del código.
+
+¿Por qué es importante?
+
+Herramientas como:
+
+- Babel
+- ESLint
+- Prettier
+- TypeScript
+- trabajan sobre el AST
+
+📌 Cuando usas TS, NO ejecuta JS, solo analiza el AST.
