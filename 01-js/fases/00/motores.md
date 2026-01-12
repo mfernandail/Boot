@@ -93,3 +93,24 @@ Herramientas como:
 - trabajan sobre el AST
 
 📌 Cuando usas TS, NO ejecuta JS, solo analiza el AST.
+
+#### 3. Bytecode – Primera forma ejecutable
+
+Después del AST, el motor genera bytecode:
+
+- Más cercano a la máquina
+- Todavía portable
+- Más rápido que interpretar directo
+
+📌 Aquí JS ya puede ejecutarse.
+
+### 4. JIT Compiler (la magia)
+
+¿Qué es JIT?
+Just-In-Time Compilation
+
+El motor:
+
+- Empieza ejecutando bytecode
+- Observa qué partes se repiten
+- Optimiza esas partes “calientes”
