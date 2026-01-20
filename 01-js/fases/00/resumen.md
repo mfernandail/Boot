@@ -10,6 +10,7 @@ Este documento resume los conceptos fundamentales de JavaScript cubiertos en est
 2. [Motores de JavaScript](#2-motores-de-javascript)
 3. [Prioridades, Event Loop y Memoria](#3-prioridades-event-loop-y-memoria)
 4. [Single-Thread (Un Solo Hilo)](#4-single-thread-un-solo-hilo)
+5. [Hoisting y Scope](#5-hoisting-y-scope)
 
 ### 🔗 Accesos Directos a los Documentos Originales
 
@@ -17,6 +18,7 @@ Este documento resume los conceptos fundamentales de JavaScript cubiertos en est
 - [motores.md](motores.md) - Motores de JavaScript y arquitectura
 - [prioridades-memoria.md](prioridades-memoria.md) - Prioridades, Event Loop y gestión de memoria
 - [single-thread.md](single-thread.md) - Modelo de ejecución de un solo hilo
+- [hoisting-scope.md](hoisting-scope.md) - Hoisting, Scope y Temporal Dead Zone
 
 ---
 
@@ -283,6 +285,131 @@ La persona solo puede hacer una tarea, pero puede pedir favores. Cuando termina,
 
 ---
 
+## 5. Hoisting y Scope
+
+**📄 Ver documento completo:** [hoisting-scope.md](hoisting-scope.md)
+
+### ¿Qué es el Scope?
+
+El **scope** (ámbito) determina dónde puedes acceder a una variable.
+
+#### Tipos de Scope
+
+**1. Global Scope**: Variables accesibles desde cualquier parte
+
+```js
+let nombre = 'María' // Accesible en todo el código
+```
+
+**2. Function Scope**: Variables solo dentro de la función
+
+```js
+function calcular() {
+  let resultado = 10 // Solo existe aquí
+}
+```
+
+**3. Block Scope**: Variables solo dentro del bloque `{ }`
+
+```js
+if (true) {
+  let x = 10 // Solo existe en este bloque
+}
+console.log(x) // ❌ Error
+```
+
+#### Scope Chain
+
+JavaScript busca variables desde el scope actual hacia arriba:
+
+1. Scope local
+2. Scope padre
+3. Scope global
+4. Si no existe → Error
+
+### ¿Qué es el Hoisting?
+
+**Hoisting** = JavaScript "eleva" las declaraciones al inicio de su scope.
+
+⚠️ Solo eleva la **declaración**, NO la **asignación**.
+
+#### Hoisting con `var`
+
+```js
+console.log(x) // undefined (no error)
+var x = 5
+console.log(x) // 5
+```
+
+#### Hoisting con `let` y `const`
+
+```js
+console.log(x) // ❌ Error: Cannot access 'x' before initialization
+let x = 5
+```
+
+📌 **Temporal Dead Zone (TDZ)**: Zona donde la variable existe pero no se puede acceder.
+
+#### Hoisting con Funciones
+
+**Function Declaration** (se eleva completamente):
+
+```js
+saludar() // ✅ "Hola" (funciona antes de declarar)
+
+function saludar() {
+  console.log('Hola')
+}
+```
+
+**Function Expression** (NO se eleva):
+
+```js
+saludar() // ❌ Error: saludar is not a function
+
+var saludar = function () {
+  console.log('Hola')
+}
+```
+
+### Tabla Comparativa: var vs let vs const
+
+| Característica | var            | let      | const    |
+| -------------- | -------------- | -------- | -------- |
+| Scope          | Function       | Block    | Block    |
+| Hoisting       | ✅ (undefined) | ⚠️ (TDZ) | ⚠️ (TDZ) |
+| Redeclaración  | ✅             | ❌       | ❌       |
+| Reasignación   | ✅             | ✅       | ❌       |
+
+### Caso Práctico: var vs let en loops
+
+```js
+// Con var
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 100)
+}
+// Salida: 3, 3, 3 (var es function scope)
+
+// Con let
+for (let i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 100)
+}
+// Salida: 0, 1, 2 (let es block scope)
+```
+
+### Reglas de Oro
+
+✔ Usa `let` y `const`, evita `var`  
+✔ Declara variables al inicio del scope  
+✔ Block scope `{ }` solo funciona con `let` y `const`  
+✔ Nunca dependas del hoisting en código real
+
+### Para Entrevistas
+
+> "El hoisting es el comportamiento de JavaScript donde las declaraciones de variables y funciones se mueven al inicio de su scope antes de la ejecución. Solo se eleva la declaración, no la inicialización. Con `let` y `const` existe la Temporal Dead Zone que previene el acceso antes de la declaración."
+
+---
+
 ## 🎯 Conclusión
 
 Estos conceptos fundamentales son la base para entender cómo funciona JavaScript:
@@ -291,5 +418,6 @@ Estos conceptos fundamentales son la base para entender cómo funciona JavaScrip
 2. **Motores**: V8, SpiderMonkey, etc., compilan y ejecutan el código
 3. **Prioridades**: Call Stack → Microtasks → Macrotasks
 4. **Single-Thread**: Un hilo con Event Loop para asincronía
+5. **Hoisting y Scope**: var vs let/const, TDZ y scope chain
 
 Dominar estos conceptos te permitirá escribir código más eficiente y debuggear problemas más fácilmente.
