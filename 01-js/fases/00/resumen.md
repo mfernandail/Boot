@@ -11,6 +11,7 @@ Este documento resume los conceptos fundamentales de JavaScript cubiertos en est
 3. [Prioridades, Event Loop y Memoria](#3-prioridades-event-loop-y-memoria)
 4. [Single-Thread (Un Solo Hilo)](#4-single-thread-un-solo-hilo)
 5. [Hoisting y Scope](#5-hoisting-y-scope)
+6. [Closures](#6-closures)
 
 ### 🔗 Accesos Directos a los Documentos Originales
 
@@ -19,6 +20,114 @@ Este documento resume los conceptos fundamentales de JavaScript cubiertos en est
 - [prioridades-memoria.md](prioridades-memoria.md) - Prioridades, Event Loop y gestión de memoria
 - [single-thread.md](single-thread.md) - Modelo de ejecución de un solo hilo
 - [hoisting-scope.md](hoisting-scope.md) - Hoisting, Scope y Temporal Dead Zone
+- [closures.md](closures.md) - Closures, variables privadas y usos prácticos
+
+---
+
+## 📖 Orden de Estudio Recomendado
+
+Para aprovechar al máximo estos conceptos, sigue este orden progresivo:
+
+### 🎯 Ruta de Aprendizaje
+
+#### 1️⃣ Lenguaje Interpretado (JIT)
+
+**¿Por qué primero?** Entender qué es JavaScript y cómo funciona en general.
+
+- Conceptos: Interpretado vs Compilado, JIT
+- Tiempo estimado: 20-30 min
+- 📄 [0.base.md](0.base.md)
+
+#### 2️⃣ Hoisting y Scope
+
+**¿Por qué segundo?** Son la base para entender cómo funcionan las variables y funciones.
+
+- Conceptos: var/let/const, TDZ, Scope Chain
+- Tiempo estimado: 45-60 min
+- 📄 [hoisting-scope.md](hoisting-scope.md)
+- ⚠️ **Fundamental**: Sin esto, el resto será confuso
+
+#### 3️⃣ Motores de JavaScript
+
+**¿Por qué tercero?** Con la base anterior, entenderás mejor cómo se ejecuta tu código.
+
+- Conceptos: V8, Parser, AST, Bytecode
+- Tiempo estimado: 30-40 min
+- 📄 [motores.md](motores.md)
+
+#### 4️⃣ Single-Thread
+
+**¿Por qué cuarto?** Comprende el modelo de ejecución de JavaScript.
+
+- Conceptos: Un solo hilo, Event Loop básico
+- Tiempo estimado: 30-40 min
+- 📄 [single-thread.md](single-thread.md)
+
+#### 5️⃣ Prioridades, Event Loop y Memoria
+
+**¿Por qué quinto?** Profundiza en asincronía y gestión de memoria.
+
+- Conceptos: Call Stack, Microtasks, Macrotasks, Stack vs Heap
+- Tiempo estimado: 60-75 min
+- 📄 [prioridades-memoria.md](prioridades-memoria.md)
+- ⚡ **Combina** conceptos de Single-Thread con gestión avanzada
+
+#### 6️⃣ Closures
+
+**¿Por qué último?** Requiere dominar Scope, Hoisting y Event Loop.
+
+- Conceptos: Variables privadas, Factory functions, Memoización
+- Tiempo estimado: 60-90 min
+- 📄 [closures.md](closures.md)
+- 🎓 **Concepto avanzado**: Practica mucho con ejemplos
+
+### 📅 Plan de Estudio Sugerido
+
+**Opción 1 - Intensivo (1 día)**
+
+- Mañana: Temas 1, 2, 3
+- Tarde: Temas 4, 5
+- Noche: Tema 6 + práctica
+
+**Opción 2 - Gradual (3 días)**
+
+- Día 1: Temas 1 y 2 + práctica
+- Día 2: Temas 3 y 4 + práctica
+- Día 3: Temas 5 y 6 + práctica
+
+**Opción 3 - Profundo (1 semana)**
+
+- 1-2 temas por día con ejercicios prácticos entre cada uno
+
+### ✅ Checklist de Progreso
+
+- [ ] Entiendo la diferencia entre interpretado y compilado
+- [ ] Domino scope (global, function, block) y hoisting
+- [ ] Sé cómo funcionan los motores JS (V8, AST, etc.)
+- [ ] Comprendo el modelo single-thread
+- [ ] Entiendo el Event Loop y sus prioridades
+- [ ] Puedo explicar qué es un closure y crear ejemplos
+
+### 💡 Consejos de Estudio
+
+1. **No saltes temas**: Cada uno construye sobre el anterior
+2. **Practica después de cada tema**: Escribe código, no solo leas
+3. **Usa la consola**: Experimenta con los ejemplos
+4. **Dibuja diagramas**: Especialmente para Event Loop y Closures
+5. **Explica en voz alta**: Si puedes enseñarlo, lo entendiste
+6. **Revisa el código existente**: Busca closures y hoisting en tu código
+
+### 🔗 Conceptos Interrelacionados
+
+```
+Hoisting & Scope
+       ↓
+    Closures
+       ↓
+  Event Loop
+       ↓
+ Programación Async
+```
 
 ---
 
@@ -410,6 +519,155 @@ for (let i = 0; i < 3; i++) {
 
 ---
 
+## 6. Closures
+
+**📄 Ver documento completo:** [closures.md](closures.md)
+
+### ¿Qué es un Closure?
+
+En términos simples:
+
+> Un closure es cuando una función "recuerda" las variables del lugar donde fue creada, incluso después de que ese lugar ya no exista.
+
+### Ejemplo Básico
+
+```js
+function crearSaludo(nombre) {
+  return function () {
+    console.log(`Hola, ${nombre}`)
+  }
+}
+
+const saludarMaria = crearSaludo('María')
+saludarMaria() // "Hola, María"
+```
+
+**¿Qué pasó?**
+
+1. `crearSaludo('María')` se ejecuta
+2. Crea la variable `nombre = 'María'`
+3. Devuelve una función
+4. `crearSaludo` termina de ejecutar
+5. **Normalmente** `nombre` debería desaparecer
+6. **PERO NO** → La función interna la "recuerda" 🔒
+
+### Contador Privado (Caso Clásico)
+
+```js
+function crearContador() {
+  let count = 0 // Variable "privada"
+
+  return function () {
+    count++
+    return count
+  }
+}
+
+const contador = crearContador()
+
+contador() // 1
+contador() // 2
+contador() // 3
+
+console.log(count) // ❌ Error: count is not defined
+```
+
+📌 `count` NO es accesible desde afuera, solo la función devuelta puede modificarlo.
+
+### Problema Común: var en Loops
+
+**❌ Problema:**
+
+```js
+for (var i = 0; i < 3; i++) {
+  setTimeout(function () {
+    console.log(i)
+  }, 1000)
+}
+// Salida: 3, 3, 3
+```
+
+**✅ Solución con `let`:**
+
+```js
+for (let i = 0; i < 3; i++) {
+  setTimeout(function () {
+    console.log(i)
+  }, 1000)
+}
+// Salida: 0, 1, 2
+```
+
+### Usos Prácticos
+
+#### 1. Variables Privadas
+
+```js
+function crearCuenta(saldoInicial) {
+  let saldo = saldoInicial // Privada
+
+  return {
+    depositar(cantidad) {
+      saldo += cantidad
+      return saldo
+    },
+    verSaldo() {
+      return saldo
+    },
+  }
+}
+
+const miCuenta = crearCuenta(100)
+miCuenta.depositar(50) // 150
+console.log(miCuenta.saldo) // undefined (protegido)
+```
+
+#### 2. Factory Functions
+
+```js
+function crearMultiplicador(factor) {
+  return function (numero) {
+    return numero * factor
+  }
+}
+
+const duplicar = crearMultiplicador(2)
+const triplicar = crearMultiplicador(3)
+
+duplicar(5) // 10
+triplicar(5) // 15
+```
+
+#### 3. Memoización (Cache)
+
+```js
+function crearCalculadora() {
+  const cache = {} // Privado
+
+  return function (n) {
+    if (cache[n]) return cache[n]
+
+    const resultado = n * n
+    cache[n] = resultado
+    return resultado
+  }
+}
+```
+
+### Reglas de Oro
+
+✔ Closures se crean **automáticamente** cuando una función interna usa variables externas  
+✔ Guardan **referencias**, no copian valores  
+✔ Úsalos para **encapsulación** y variables privadas  
+✔ Cuidado con loops y `var`, usa `let`  
+✔ Atención a **memory leaks** con objetos grandes
+
+### Para Entrevistas
+
+> "Un closure es una función que tiene acceso a variables de su scope externo, incluso después de que la función externa haya terminado de ejecutarse. JavaScript crea closures automáticamente cuando una función interna referencia variables de su función contenedora, manteniendo esas variables en memoria."
+
+---
+
 ## 🎯 Conclusión
 
 Estos conceptos fundamentales son la base para entender cómo funciona JavaScript:
@@ -419,5 +677,6 @@ Estos conceptos fundamentales son la base para entender cómo funciona JavaScrip
 3. **Prioridades**: Call Stack → Microtasks → Macrotasks
 4. **Single-Thread**: Un hilo con Event Loop para asincronía
 5. **Hoisting y Scope**: var vs let/const, TDZ y scope chain
+6. **Closures**: Funciones que recuerdan su entorno, encapsulación
 
 Dominar estos conceptos te permitirá escribir código más eficiente y debuggear problemas más fácilmente.
