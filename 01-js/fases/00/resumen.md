@@ -22,6 +22,10 @@ Este documento resume los conceptos fundamentales de JavaScript cubiertos en est
 - [hoisting-scope.md](hoisting-scope.md) - Hoisting, Scope y Temporal Dead Zone
 - [closures.md](closures.md) - Closures, variables privadas y usos prácticos
 
+### 🎯 Evaluación
+
+- [quiz.md](quiz.md) - **Quiz completo** con preguntas de estudio y entrevistas
+
 ---
 
 ## 📖 Orden de Estudio Recomendado
