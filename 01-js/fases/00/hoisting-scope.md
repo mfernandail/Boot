@@ -210,12 +210,56 @@ for (var i = 0; i < 3; i++) {
 }
 // Salida: 3, 3, 3 (var es function scope)
 
+Stack / Scope
+┌──────────────┐
+│ i = 3        │  ← UNA sola variable
+└──────────────┘
+    ↑    ↑    ↑
+  cb   cb   cb
+
+// Cada callback captura su propia i.
+{
+  let i = 0
+  setTimeout(() => console.log(i), 100)
+}
+
+{
+  let i = 1
+  setTimeout(() => console.log(i), 100)
+}
+
+{
+  let i = 2
+  setTimeout(() => console.log(i), 100)
+}
+
+
+
 // Con let
 for (let i = 0; i < 3; i++) {
   setTimeout(() => console.log(i), 100)
 }
 // Salida: 0, 1, 2 (let es block scope)
+
+Heap / Closures
+┌────────┐   ┌────────┐   ┌────────┐
+│ i = 0  │   │ i = 1  │   │ i = 2  │
+└────────┘   └────────┘   └────────┘
+   ↑            ↑            ↑
+  cb           cb           cb
+
 ```
+
+- Con var hay UNA sola variable i, y todos los setTimeout apuntan a ESA misma i.
+- var es function scope, no block scope. El for NO crea un nuevo scope. Mentalmente es como si JS elevara la declaración de i al inicio de la función que contiene el for, entonces i vive fuera del for (scope del for).
+- Con let, cada iteración crea UNA nueva variable i, y cada setTimeout apunta a SU propia i.
+- Idea clave con let let crea una NUEVA i en cada iteración del loop. Cada vuelta tiene su propio scope.
+- Esto no es “magia”, es closure:
+  - setTimeout crea un closure que captura la variable i de SU scope.
+  - Con var: closure apunta a la misma variable
+  - Con let: closure apunta a variables distintas
+
+## **Importante: El callback no guarda el valor, guarda una referencia a i. Guarda una referencia a i**
 
 ### Ejemplo 2: Scope anidado
 
@@ -311,24 +355,3 @@ z = 20 // ❌ Error: Assignment to constant variable
 **¿Qué es el Scope Chain?**
 
 > "Es el mecanismo por el cual JavaScript busca variables. Cuando se referencia una variable, JS la busca primero en el scope local, luego en scopes padres sucesivamente hasta llegar al scope global. Si no la encuentra, arroja un ReferenceError."
-
----
-
-## 🔗 Relación con Otros Conceptos
-
-- **Closures**: Dependen del scope chain para capturar variables
-- **Event Loop**: Las variables respetan su scope incluso en callbacks async
-- **Contexto de Ejecución**: Cada función crea un nuevo scope
-- **This**: Se comporta diferente según el scope (especialmente en arrow functions)
-
----
-
-## ✅ Checklist de Dominio
-
-- [ ] Entiendes la diferencia entre function, block y global scope
-- [ ] Sabes por qué evitar `var`
-- [ ] Comprendes la Temporal Dead Zone
-- [ ] Puedes explicar el hoisting de funciones vs variables
-- [ ] Entiendes el scope chain y cómo JS busca variables
-- [ ] Sabes cuándo usar `let` vs `const`
-- [ ] Puedes predecir el output de código con hoisting complejo
