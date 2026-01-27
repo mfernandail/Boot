@@ -25,6 +25,7 @@ Este documento resume los conceptos fundamentales de JavaScript cubiertos en est
 ### 🎯 Evaluación
 
 - [quiz.md](quiz.md) - **Quiz completo** con preguntas de estudio y entrevistas
+- [preguntas-entrevistas.md](preguntas-entrevistas.md) - **Preguntas frecuentes en entrevistas** con respuestas profesionales
 
 ---
 

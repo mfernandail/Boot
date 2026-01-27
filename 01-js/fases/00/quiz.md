@@ -4,15 +4,6 @@ Pon a prueba tus conocimientos sobre los conceptos fundamentales de JavaScript.
 
 ---
 
-## 📋 Instrucciones
-
-- Lee cada pregunta cuidadosamente
-- Intenta responder sin ver las soluciones
-- Las respuestas están al final de cada sección
-- Para preguntas de código, escribe tu respuesta antes de ver la solución
-
----
-
 ## 🎓 Sección 1: Lenguaje Interpretado y JIT
 
 ### Pregunta 1.1 (Opción Múltiple)
