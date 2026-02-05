@@ -12,8 +12,14 @@ Este documento resume los conceptos fundamentales de JavaScript cubiertos en est
 4. [Single-Thread (Un Solo Hilo)](#4-single-thread-un-solo-hilo)
 5. [Hoisting y Scope](#5-hoisting-y-scope)
 6. [Closures](#6-closures)
+7. [Promises vs async/await](#7-promises-vs-asyncawait)
+8. [Inmutabilidad](#8-inmutabilidad)
+9. [Valores vs Referencias](#9-valores-vs-referencias)
+10. [ES6+ Features](#10-es6-features)
 
-### 🔗 Accesos Directos a los Documentos Originales
+### 🔗 Accesos Directos a los Documentos
+
+**Fundamentos Base:**
 
 - [0.base.md](0.base.md) - Lenguaje interpretado y compilación JIT
 - [motores.md](motores.md) - Motores de JavaScript y arquitectura
@@ -21,6 +27,13 @@ Este documento resume los conceptos fundamentales de JavaScript cubiertos en est
 - [single-thread.md](single-thread.md) - Modelo de ejecución de un solo hilo
 - [hoisting-scope.md](hoisting-scope.md) - Hoisting, Scope y Temporal Dead Zone
 - [closures.md](closures.md) - Closures, variables privadas y usos prácticos
+
+**JavaScript Moderno:**
+
+- [promises-async.md](promises-async.md) - Promises vs async/await, manejo de asincronía
+- [inmutabilidad.md](inmutabilidad.md) - Inmutabilidad, métodos mutables vs inmutables
+- [valores-referencias.md](valores-referencias.md) - Valores por referencia vs por valor
+- [es6-features.md](es6-features.md) - Arrow functions, destructuring, spread/rest, modules
 
 ### 🎯 Evaluación
 
@@ -86,25 +99,70 @@ Para aprovechar al máximo estos conceptos, sigue este orden progresivo:
 - 📄 [closures.md](closures.md)
 - 🎓 **Concepto avanzado**: Practica mucho con ejemplos
 
+#### 7️⃣ Promises vs async/await
+
+**¿Por qué séptimo?** Necesitas entender asincronía primero (Event Loop).
+
+- Conceptos: Promises, async/await, Promise.all/race, manejo de errores
+- Tiempo estimado: 45-60 min
+- 📄 [promises-async.md](promises-async.md)
+- 🔄 **Asincronía moderna**: Esencial para APIs y operaciones asíncronas
+
+#### 8️⃣ Inmutabilidad
+
+**¿Por qué octavo?** Concepto fundamental para React y programación funcional.
+
+- Conceptos: Métodos mutables vs inmutables, shallow vs deep copy
+- Tiempo estimado: 30-45 min
+- 📄 [inmutabilidad.md](inmutabilidad.md)
+- 🎯 **Buenas prácticas**: Previene bugs y facilita debugging
+
+#### 9️⃣ Valores vs Referencias
+
+**¿Por qué noveno?** Complementa inmutabilidad y evita errores comunes.
+
+- Conceptos: Primitivos vs objetos, paso por valor/referencia, copias
+- Tiempo estimado: 30-45 min
+- 📄 [valores-referencias.md](valores-referencias.md)
+- 💡 **Prevención de bugs**: Entender cómo se copian los datos
+
+#### 🔟 ES6+ Features
+
+**¿Por qué último?** Integra todos los conceptos con sintaxis moderna.
+
+- Conceptos: Arrow functions, destructuring, spread/rest, modules, optional chaining
+- Tiempo estimado: 60-75 min
+- 📄 [es6-features.md](es6-features.md)
+- 🚀 **Sintaxis moderna**: Herramientas para código limpio y eficiente
+
 ### 📅 Plan de Estudio Sugerido
 
-**Opción 1 - Intensivo (1 día)**
+**Opción 1 - Intensivo (3-4 días)**
 
-- Mañana: Temas 1, 2, 3
-- Tarde: Temas 4, 5
-- Noche: Tema 6 + práctica
+- Día 1: Temas 1-3 (Base, Hoisting, Motores)
+- Día 2: Temas 4-6 (Single-Thread, Event Loop, Closures)
+- Día 3: Temas 7-8 (Promises, Inmutabilidad)
+- Día 4: Temas 9-10 (Referencias, ES6+) + práctica
 
-**Opción 2 - Gradual (3 días)**
+**Opción 2 - Gradual (2 semanas)**
 
-- Día 1: Temas 1 y 2 + práctica
-- Día 2: Temas 3 y 4 + práctica
-- Día 3: Temas 5 y 6 + práctica
+- Semana 1: Fundamentos (Temas 1-6)
+  - Día 1-2: Base, Hoisting
+  - Día 3-4: Motores, Single-Thread
+  - Día 5-7: Event Loop, Closures + práctica
+- Semana 2: JavaScript Moderno (Temas 7-10)
+  - Día 8-9: Promises, Inmutabilidad
+  - Día 10-11: Referencias, ES6+
+  - Día 12-14: Práctica intensiva
 
-**Opción 3 - Profundo (1 semana)**
+**Opción 3 - Profundo (3-4 semanas)**
 
-- 1-2 temas por día con ejercicios prácticos entre cada uno
+- 1 tema por día con ejercicios prácticos
+- Última semana: Proyectos integradores
 
 ### ✅ Checklist de Progreso
+
+**Fundamentos:**
 
 - [ ] Entiendo la diferencia entre interpretado y compilado
 - [ ] Domino scope (global, function, block) y hoisting
@@ -113,14 +171,15 @@ Para aprovechar al máximo estos conceptos, sigue este orden progresivo:
 - [ ] Entiendo el Event Loop y sus prioridades
 - [ ] Puedo explicar qué es un closure y crear ejemplos
 
-### 💡 Consejos de Estudio
+**JavaScript Moderno:**
 
-1. **No saltes temas**: Cada uno construye sobre el anterior
-2. **Practica después de cada tema**: Escribe código, no solo leas
-3. **Usa la consola**: Experimenta con los ejemplos
-4. **Dibuja diagramas**: Especialmente para Event Loop y Closures
-5. **Explica en voz alta**: Si puedes enseñarlo, lo entendiste
-6. **Revisa el código existente**: Busca closures y hoisting en tu código
+- [ ] Domino Promises y async/await
+- [ ] Trabajo de forma inmutable
+- [ ] Entiendo valores vs referencias
+- [ ] Uso fluidamente arrow functions y destructuring
+- [ ] Manejo spread/rest operators
+- [ ] Trabajo con modules (import/export)
+- [ ] Uso optional chaining y nullish coalescing
 
 ### 🔗 Conceptos Interrelacionados
 
@@ -131,7 +190,11 @@ Hoisting & Scope
        ↓
   Event Loop
        ↓
- Programación Async
+Promises/async-await
+       ↓
+ Inmutabilidad & Referencias
+       ↓
+    ES6+ Features
 ```
 
 ---
@@ -673,9 +736,201 @@ function crearCalculadora() {
 
 ---
 
+## 7. JavaScript Moderno (ES6+)
+
+**📄 Ver documento completo:** [js-moderno.md](js-moderno.md)
+
+### Promises vs async/await
+
+**Promises:**
+
+```js
+obtenerUsuario(1)
+  .then((usuario) => obtenerPosts(usuario.id))
+  .then((posts) => console.log(posts))
+  .catch((error) => console.error(error))
+```
+
+**async/await:**
+
+```js
+async function mostrar() {
+  try {
+    const usuario = await obtenerUsuario(1)
+    const posts = await obtenerPosts(usuario.id)
+    console.log(posts)
+  } catch (error) {
+    console.error(error)
+  }
+}
+```
+
+**Ventajas de async/await:**
+
+- ✅ Código más legible (parece síncrono)
+- ✅ Menos anidación
+- ✅ Debugging más fácil
+- ✅ Manejo de errores con try/catch
+
+**Operaciones en paralelo:**
+
+```js
+// ❌ Secuencial (lento)
+const usuarios = await fetch('/api/users')
+const posts = await fetch('/api/posts')
+
+// ✅ Paralelo (rápido)
+const [usuarios, posts] = await Promise.all([
+  fetch('/api/users'),
+  fetch('/api/posts'),
+])
+```
+
+### Inmutabilidad
+
+No modificar datos existentes, crear nuevas copias.
+
+**❌ Mutable:**
+
+```js
+const arr = [1, 2, 3]
+arr.push(4) // Modifica el original
+```
+
+**✅ Inmutable:**
+
+```js
+const arr = [1, 2, 3]
+const nuevo = [...arr, 4] // Crea nuevo array
+```
+
+**Métodos inmutables:**
+
+- Arrays: `.map()`, `.filter()`, `.slice()`, spread `[...]`
+- Objetos: spread `{...obj}`, `Object.assign()`
+
+**Evitar métodos mutables:**
+
+- `.push()`, `.pop()`, `.shift()`, `.unshift()`, `.splice()`, `.sort()`, `.reverse()`
+
+### Valores vs Referencias
+
+**Primitivos (por valor):**
+
+```js
+let a = 10
+let b = a // Copia el valor
+b = 20
+console.log(a) // 10 (no cambió)
+```
+
+**Objetos (por referencia):**
+
+```js
+const obj1 = { nombre: 'María' }
+const obj2 = obj1 // Copia la referencia
+obj2.nombre = 'Juan'
+console.log(obj1.nombre) // 'Juan' (cambió)
+```
+
+**Copiar objetos:**
+
+```js
+// Shallow copy (primer nivel)
+const copia = { ...original }
+
+// Deep copy
+const copiaProf = structuredClone(original)
+```
+
+### ES6+ Features Esenciales
+
+**Arrow Functions:**
+
+```js
+const suma = (a, b) => a + b
+const doble = (x) => x * 2
+```
+
+**Destructuring:**
+
+```js
+// Objetos
+const { nombre, edad } = persona
+
+// Arrays
+const [primero, segundo] = colores
+
+// En parámetros
+function presentar({ nombre, edad }) {
+  console.log(`${nombre} tiene ${edad} años`)
+}
+```
+
+**Spread/Rest:**
+
+```js
+// Spread - expandir
+const arr = [1, 2, 3]
+const nuevo = [...arr, 4, 5]
+
+// Rest - recoger
+function sumar(...nums) {
+  return nums.reduce((acc, n) => acc + n, 0)
+}
+```
+
+**Template Literals:**
+
+```js
+const nombre = 'María'
+const mensaje = `Hola, soy ${nombre}`
+```
+
+**Optional Chaining:**
+
+```js
+const ciudad = usuario.direccion?.ciudad
+const codigo = usuario.contacto?.telefono?.codigo
+```
+
+**Nullish Coalescing:**
+
+```js
+const valor = config.timeout ?? 3000 // Solo null/undefined
+```
+
+**Modules:**
+
+```js
+// Exportar
+export const suma = (a, b) => a + b
+export default function calcular() {}
+
+// Importar
+import calcular, { suma } from './math.js'
+```
+
+### Reglas de Oro
+
+✔ Usa `async/await` para código asíncrono más legible  
+✔ Trabaja de forma inmutable con spread operator  
+✔ Recuerda: primitivos por valor, objetos por referencia  
+✔ Arrow functions para callbacks, no para métodos  
+✔ Destructuring para extraer datos limpiamente  
+✔ Optional chaining para evitar errores de null/undefined
+
+### Para Entrevistas
+
+> "async/await es azúcar sintáctica sobre Promises que hace el código más legible. La inmutabilidad previene bugs y es esencial en frameworks como React. Los primitivos se copian por valor mientras que objetos y arrays se copian por referencia, por lo que debemos usar spread operator o métodos como slice/map para crear copias."
+
+---
+
 ## 🎯 Conclusión
 
 Estos conceptos fundamentales son la base para entender cómo funciona JavaScript:
+
+**Fundamentos Base:**
 
 1. **Interpretado con JIT**: Aprende y optimiza mientras ejecuta
 2. **Motores**: V8, SpiderMonkey, etc., compilan y ejecutan el código
@@ -684,4 +939,11 @@ Estos conceptos fundamentales son la base para entender cómo funciona JavaScrip
 5. **Hoisting y Scope**: var vs let/const, TDZ y scope chain
 6. **Closures**: Funciones que recuerdan su entorno, encapsulación
 
+**JavaScript Moderno:** 7. **Promises vs async/await**: Manejo moderno de asincronía 8. **Inmutabilidad**: Prevención de bugs, esencial en React 9. **Valores vs Referencias**: Entender cómo se copian los datos 10. **ES6+ Features**: Arrow functions, destructuring, modules, etc.
+
 Dominar estos conceptos te permitirá escribir código más eficiente y debuggear problemas más fácilmente.
+
+### 📚 Recursos Adicionales
+
+- [quiz.md](quiz.md) - Quiz completo para practicar
+- [preguntas-entrevistas.md](preguntas-entrevistas.md) - Preparación para entrevistas técnicas
