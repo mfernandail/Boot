@@ -81,30 +81,6 @@ const empleadosMasHoras = empleados.reduce(
 
 // E) Promedio de salario por departamento
 // Formato: { IT: 4000, Marketing: 3000 }
-const promedioSalarioDepartamento = empleados.reduce(
-  (acc_departamento, el_departamento) => {
-    if (!acc_departamento[el_departamento.departamento]) {
-      acc_departamento[el_departamento.departamento] = {
-        totalSalario: el_departamento.salario,
-        contador: 1,
-      }
-    } else {
-      acc_departamento[el_departamento.departamento].totalSalario +=
-        el_departamento.salario
-      acc_departamento[el_departamento.departamento].contador += 1
-    }
-    return acc_departamento
-  },
-  {}
-)
-
-for (const departamento in promedioSalarioDepartamento) {
-  promedioSalarioDepartamento[departamento] =
-    promedioSalarioDepartamento[departamento].totalSalario /
-    promedioSalarioDepartamento[departamento].contador
-}
-
-// E) Forma alternativa Promedio de salario por departamento
 
 const promedioSalarioDepto = empleados.reduce((acc_depto, el_depto) => {
   if (!acc_depto[el_depto.departamento]) {
@@ -138,4 +114,9 @@ const habilidadesUnicas = [...new Set(empleados.flatMap((h) => h.habilidades))]
 // G) Empleados que saben JavaScript
 const empleadosJS = empleados.filter((empleado) =>
   empleado.habilidades.includes('JavaScript')
+)
+
+// H) ¿Hay algún empleado con más de 6 años de antigüedad y salario menor a 4000?
+const empleadoAntiguedadSalario = empleados.some(
+  (empleado) => empleado.antiguedad > 6 && empleado.salario < 4000
 )
