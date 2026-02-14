@@ -16,6 +16,7 @@ cd src
 
 - Se escriben en relación a la ubicación del archivo que las importa.
 - Ejemplo: `./utils.js` o `../helpers.js`
+- Si el fichero empieza con punto (.) `.congif/` significa que es una carpeta oculta.
 - Se puede mover con ejemplo:
 
 ```js
