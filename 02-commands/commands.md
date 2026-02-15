@@ -7,6 +7,7 @@
 | `pwd`                                 | Muestra el directorio actual (print working directory) | `pwd`                               |
 | `ls`                                  | Lista archivos y carpetas en el directorio actual      | `ls`                                |
 | `ls -la`                              | Lista archivos incluyendo ocultos y con detalles       | `ls -la`                            |
+| `ls -lh`                              | Lista archivos con detalles en un formato legible      | `ls -lh`                            |
 | `cd [carpeta]`                        | Cambia al directorio especificado (change directory)   | `cd Documents`                      |
 | `cd ..`                               | Sube un nivel en el árbol de directorios               | `cd ..`                             |
 | `cd ~`                                | Va al directorio home del usuario                      | `cd ~`                              |
