@@ -1,0 +1,12 @@
+{
+  "name": "ia-api",
+  "version": "1.0.0",
+  "main": "api.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node api.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
